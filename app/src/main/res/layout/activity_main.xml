@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".controller.MainActivity">
+
+    <Button
+        android:id="@+id/activity_hyperfocale_btn"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_margin="5dp"
+        android:background="@android:color/holo_blue_bright"
+        android:layout_height="0dp"
+        android:text="Hyperfocale"
+        android:textColor="@android:color/white"
+        android:textSize="24sp" />
+    <Button
+        android:id="@+id/activity_profondeur_de_champ_btn"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_margin="5dp"
+        android:background="@android:color/holo_orange_light"
+        android:layout_height="0dp"
+        android:text="Depth of field"
+        android:textColor="@android:color/white"
+        android:textSize="24sp" />
+    <Button
+        android:id="@+id/activity_pose_longue_btn"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_margin="5dp"
+        android:background="@android:color/holo_red_dark"
+        android:layout_height="0dp"
+        android:text="Long exposure"
+        android:textColor="@android:color/white"
+        android:textSize="24sp" />
+
+
+
+
+</LinearLayout>

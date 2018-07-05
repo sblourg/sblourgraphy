@@ -1,0 +1,140 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="sblourg.sblourgraphy.controller.HyperfocaleActivity">
+
+    <TextView
+        android:id="@+id/textViewObjectif"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Lens"
+        android:textStyle="bold" />
+
+    <Spinner
+        android:id="@+id/spinnerObjectif"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="45dp"
+        android:background="@android:drawable/btn_dropdown"
+        android:spinnerMode="dropdown"
+        android:layout_alignParentLeft="true" />
+
+    <TextView
+        android:id="@+id/textViewAperture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/textViewObjectif"
+        android:layout_marginTop="108dp"
+        android:text="Aperture"
+        android:textStyle="bold"
+        android:layout_alignLeft="@+id/textViewObjectif" />
+
+    <Spinner
+        android:id="@+id/spinnerAperture"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="134dp"
+        android:background="@android:drawable/btn_dropdown"
+        android:spinnerMode="dropdown"
+        android:layout_alignParentLeft="true" />
+
+
+    <TextView
+        android:id="@+id/textViewFocale"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+
+        android:layout_alignStart="@+id/textViewObjectif"
+        android:layout_marginTop="193dp"
+        android:text="Focale"
+        android:textStyle="bold"
+        android:layout_alignLeft="@+id/textViewObjectif" />
+
+    <TextView
+        android:id="@+id/textViewFocaleSelected"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_alignTop="@+id/textViewFocale"
+        android:layout_centerHorizontal="true"
+        android:textStyle="bold" />
+
+
+    <TextView
+        android:id="@+id/textViewFocaleMin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/textViewObjectif"
+        android:layout_below="@+id/seekBarFocale"
+        android:text="min"
+        android:layout_alignLeft="@+id/textViewObjectif" />
+
+    <TextView
+        android:id="@+id/textViewFocaleMax"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/textViewFocaleMin"
+        android:layout_marginEnd="12dp"
+        android:text="max"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="12dp" />
+
+    <SeekBar
+        android:id="@+id/seekBarFocale"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true" />
+
+
+    <Button
+        android:id="@+id/buttonSubmit"
+        android:layout_width="221dp"
+        android:layout_height="45dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="163dp"
+        android:background="@color/colorAccent"
+        android:text="Submit" />
+
+    <TextView
+        android:id="@+id/textViewHyperfocale"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/textViewObjectif"
+        android:layout_marginBottom="120dp"
+        android:text="Hyperfocale"
+        android:textStyle="bold"
+        android:layout_alignLeft="@+id/textViewObjectif" />
+
+    <TextView
+        android:id="@+id/textViewHyperfocaleResult"
+        android:layout_width="wrap_content"
+        android:layout_height="72dp"
+
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="16dp"
+        android:textColor="@color/colorAccent"
+        android:textSize="30dp"
+        android:textStyle="bold" />
+
+</RelativeLayout>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="objectif_bank">
+        <item>Canon 16-35mm F2.8 LII</item>
+        <item>Canon 24-105mm F4 L</item>
+        <item>Sigma 50mm F1.4</item>
+        <item>Canon 85mm F1.2 LII</item>
+        <item>Canon 135mm F2 L</item>
+        <item>Sigma 150mm F2.8 macro</item>
+    </string-array>
+    <string-array name="aperture_sigma_50mm_array">
+        <item>1.4</item>
+        <item>1.6</item>
+        <item>1.8</item>
+        <item>2.0</item>
+    </string-array>
+    <string-array name="aperture_canon_85mm_array">
+        <item>toto</item>
+        <item>1.6</item>
+        <item>1.8</item>
+        <item>2.0</item>
+    </string-array>
+    <string-array name="aperture_sigma_150mm_array">
+        <item>2.8</item>
+        <item>1.6</item>
+        <item>1.8</item>
+        <item>2.0</item>
+    </string-array>
+    <string-array name="aperture_canon_135mm_array">
+        <item>2.0</item>
+        <item>1.6</item>
+        <item>1.8</item>
+        <item>2.0</item>
+    </string-array>
+    <string-array name="aperture_canon_24_105mm_array">
+        <item>4.0</item>
+        <item>1.6</item>
+        <item>1.8</item>
+        <item>2.0</item>
+    </string-array>
+    <string-array name="aperture_canon_16_35mm_array">
+        <item>2.8</item>
+        <item>1.6</item>
+        <item>1.8</item>
+        <item>2.0</item>
+    </string-array>
+</resources>
