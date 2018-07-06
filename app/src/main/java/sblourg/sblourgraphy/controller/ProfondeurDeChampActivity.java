@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 
@@ -33,20 +34,28 @@ public class ProfondeurDeChampActivity extends AppCompatActivity implements Adap
     private LensBank mLensBank;
     private ObjectifBean objectifSelected;
     //GUI
-    private TextView mTextViewFocaleMin, mTextViewFocaleMax, mTextViewFocaleSelected, mTextViewHyperfocaleResult, mTextViewHyperfocale;
+    private TextView mTextViewFocaleMin, mTextViewFocaleMax, mTextViewFocaleSelected, mTextViewMapSelected, mTextViewMapMin,  mTextViewMinPDC, mTextViewPDC, mTextViewMaxPDC;
     private Spinner mSpinnerObjectif, mSpinnerAperture;
-    private SeekBar mSeekBarFocale;
+    private SeekBar mSeekBarFocale,mSeekBarMap;
+    private View mViewPDC, mViewBeforePDC, mViewAfterPDC;
     private Button mButtonSubmit;
 
+    private double mapMin;
+    private int mapMinInt;
+
     private final static String MM = "mm";
-    private final static double CERCLE_DE_CONFUSION = 0.033;
+    private final static String M = "m";
+    private final static String CM = "cm)";
+    private final static String INFINY ="∞";
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         //GUI
-        setContentView(R.layout.hyperfocale_activity);
+        setContentView(R.layout.pdc_activity);
 
         try {
             readFromJson();
@@ -59,14 +68,23 @@ public class ProfondeurDeChampActivity extends AppCompatActivity implements Adap
     }
 
     private void initializeGui() {
-        mTextViewHyperfocale = (TextView) findViewById(R.id.textViewHyperfocale);
-        mTextViewHyperfocaleResult = (TextView) findViewById(R.id.textViewHyperfocaleResult);
         mTextViewFocaleSelected = (TextView) findViewById(R.id.textViewFocaleSelected);
+        mTextViewMapSelected = (TextView) findViewById(R.id.textViewMapSelected);
+        mTextViewMapMin = (TextView) findViewById(R.id.textViewMAPMin);
         mTextViewFocaleMin = (TextView) findViewById(R.id.textViewFocaleMin);
         mTextViewFocaleMax = (TextView) findViewById(R.id.textViewFocaleMax);
+        mTextViewMinPDC = (TextView) findViewById(R.id.textViewMinPDC);
+        mTextViewMaxPDC = (TextView) findViewById(R.id.textViewMaxPDC);
+        mTextViewPDC = (TextView) findViewById(R.id.textViewPDC);
+
         mSpinnerObjectif = (Spinner) findViewById(R.id.spinnerObjectif);
         mSpinnerAperture = (Spinner) findViewById(R.id.spinnerAperture);
         mSeekBarFocale = (SeekBar) findViewById(R.id.seekBarFocale);
+        mSeekBarMap = (SeekBar) findViewById(R.id.seekBarMAP);
+
+        mViewPDC = (View) findViewById(R.id.viewPDC);
+        mViewBeforePDC = (View) findViewById(R.id.viewBeforePDC);
+        mViewAfterPDC = (View) findViewById(R.id.viewAfterPDC);
 
         // Spinner objectif
         ArrayAdapter<String> adapterObjectif = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, mLensBank.getLensListName());
@@ -80,6 +98,7 @@ public class ProfondeurDeChampActivity extends AppCompatActivity implements Adap
                 objectifSelected = mLensBank.getLensBank().get(i);
 
                 initializeFocale(objectifSelected);
+                initializeMap(objectifSelected);
             }
 
             @Override
@@ -95,6 +114,7 @@ public class ProfondeurDeChampActivity extends AppCompatActivity implements Adap
         createApertureSpinner(adapterAperture);
         mTextViewFocaleSelected.setText(String.valueOf(objectifSelected.focale)+MM);
         setFieldsInvisible(objectifSelected.focaleFixe);
+
         if (objectifSelected.focaleFixe==false){
             focaleFromZoom(objectifSelected.minFocaleZoom,objectifSelected.maxFocaleZoom);
         }
@@ -112,16 +132,19 @@ public class ProfondeurDeChampActivity extends AppCompatActivity implements Adap
         if (invisible){
             mTextViewFocaleMin.setVisibility(View.INVISIBLE);
             mTextViewFocaleMax.setVisibility(View.INVISIBLE);
-            mTextViewHyperfocaleResult.setVisibility(View.INVISIBLE);
             mSeekBarFocale.setVisibility(View.INVISIBLE);
-            mTextViewHyperfocale.setVisibility(View.INVISIBLE);
         } else {
             mTextViewFocaleMin.setVisibility(View.VISIBLE);
             mTextViewFocaleMax.setVisibility(View.VISIBLE);
             mSeekBarFocale.setVisibility(View.VISIBLE);
         }
-        mTextViewHyperfocaleResult.setVisibility(View.INVISIBLE);
-        mTextViewHyperfocale.setVisibility(View.INVISIBLE);
+
+        mTextViewMinPDC.setVisibility(View.INVISIBLE);
+        mTextViewMaxPDC.setVisibility(View.INVISIBLE);
+        mTextViewPDC.setVisibility(View.INVISIBLE);
+        mViewPDC.setVisibility(View.INVISIBLE);
+        mViewBeforePDC.setVisibility(View.INVISIBLE);
+        mViewAfterPDC.setVisibility(View.INVISIBLE);
     }
 
     private void focaleFromZoom(final int focaleMin, int focaleMax) {
@@ -152,6 +175,40 @@ public class ProfondeurDeChampActivity extends AppCompatActivity implements Adap
         });
     }
 
+    private void initializeMap(final ObjectifBean objectifSelected) {
+        mapMin = objectifSelected.getMinMAP();
+        objectifSelected.setMapSelected(mapMin);
+
+        //min
+        mTextViewMapMin.setText(mapMin+M);
+
+        // drawing seekBar
+        mSeekBarMap = (SeekBar) findViewById(R.id.seekBarMAP);
+        mSeekBarMap.setProgress(0);
+        mapMinInt = (int) (mapMin * 100);
+        mSeekBarMap.setMax(1000-mapMinInt);
+
+        mSeekBarMap.refreshDrawableState();
+        mTextViewMapSelected.setText(mapMin+M);
+        //Get value from SeekBar
+        mSeekBarMap.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener(){
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress,
+                                          boolean fromUser) {
+
+                mTextViewMapSelected.setText(String.valueOf((double)(mapMinInt + progress)/100)+M);
+                objectifSelected.setMapSelected((double)(mapMinInt + progress)/100);
+
+            }
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+            }
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+            }
+        });
+    }
+
     // get the selected dropdown list value
     public void addListenerOnButton() {
         mButtonSubmit = (Button) findViewById(R.id.buttonSubmit);
@@ -161,17 +218,30 @@ public class ProfondeurDeChampActivity extends AppCompatActivity implements Adap
             public void onClick(View v) {
                 objectifSelected.setApertureSelected((Double) mSpinnerAperture.getSelectedItem());
 
-                /*Toast.makeText(HyperfocaleActivity.this,
-                        "OnClickListener : " +
-                                "\nObjectif : "+ String.valueOf(mSpinnerObjectif.getSelectedItem()) +
-                                "\nAperture : "+ String.valueOf(mSpinnerAperture.getSelectedItem()),
-                        Toast.LENGTH_SHORT).show();*/
+                mTextViewMaxPDC.setVisibility(View.VISIBLE);
+                mTextViewMinPDC.setVisibility(View.VISIBLE);
+                mTextViewPDC.setVisibility(View.VISIBLE);
+                mViewPDC.setVisibility(View.VISIBLE);
+                mViewBeforePDC.setVisibility(View.VISIBLE);
 
 
-
-                mTextViewHyperfocaleResult.setVisibility(View.VISIBLE);
-                mTextViewHyperfocale.setVisibility(View.VISIBLE);
-                mTextViewHyperfocaleResult.setText(objectifSelected.calculateHyperfocale()+"m");
+                double minPDC = objectifSelected.calculateDistanceMinPDC();
+                double maxPDC = objectifSelected.calculateDistanceMaxPDC();
+                double PDC = 0;
+                if (maxPDC !=0) {
+                    PDC = maxPDC - minPDC;
+                    PDC = Math.round ( PDC *1000.0)/1000.0;
+                    mTextViewMinPDC.setText(minPDC+M);
+                    mTextViewMaxPDC.setText(maxPDC+M);
+                    mTextViewPDC.setText(PDC + M +  " ("+ Math.round(PDC*100*100.0)/100.0 + CM);
+                    mViewAfterPDC.setVisibility(View.VISIBLE);
+                }
+                else {
+                    mTextViewMinPDC.setText(minPDC+M);
+                    mTextViewMaxPDC.setText(INFINY);
+                    mTextViewPDC.setText(INFINY);
+                    mViewAfterPDC.setVisibility(View.INVISIBLE);
+                }
             }
 
         });
@@ -239,6 +309,7 @@ public class ProfondeurDeChampActivity extends AppCompatActivity implements Adap
             String focaleSelected = wrapperObject.getString("focaleSelected");
             String focaleMin = wrapperObject.getString("focaleMin");
             String focaleMax = wrapperObject.getString("focaleMax");
+            String minMap = wrapperObject.getString("minMap");
 
             JSONArray apertureArray = new JSONArray(wrapperObject.getString("aperture"));
             double[] apertureObjectifBean = new double[apertureArray.length()];
