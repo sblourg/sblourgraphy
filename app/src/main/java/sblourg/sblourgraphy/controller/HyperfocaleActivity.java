@@ -50,7 +50,7 @@ public class HyperfocaleActivity extends AppCompatActivity implements AdapterVie
     private Button mButtonSubmit;
 
     private final static String MM = "mm";
-    private final static double CERCLE_DE_CONFUSION = 0.033;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -123,9 +123,7 @@ public class HyperfocaleActivity extends AppCompatActivity implements AdapterVie
         if (invisible){
             mTextViewFocaleMin.setVisibility(View.INVISIBLE);
             mTextViewFocaleMax.setVisibility(View.INVISIBLE);
-            mTextViewHyperfocaleResult.setVisibility(View.INVISIBLE);
             mSeekBarFocale.setVisibility(View.INVISIBLE);
-            mTextViewHyperfocale.setVisibility(View.INVISIBLE);
         } else {
             mTextViewFocaleMin.setVisibility(View.VISIBLE);
             mTextViewFocaleMax.setVisibility(View.VISIBLE);
@@ -182,7 +180,9 @@ public class HyperfocaleActivity extends AppCompatActivity implements AdapterVie
 
                 mTextViewHyperfocaleResult.setVisibility(View.VISIBLE);
                 mTextViewHyperfocale.setVisibility(View.VISIBLE);
-                mTextViewHyperfocaleResult.setText(objectifSelected.calculateHyperfocale()+"m");
+                double hyperfocale = objectifSelected.calculateHyperfocale();
+                hyperfocale = Math.round(hyperfocale*100.0)/100.0;
+                mTextViewHyperfocaleResult.setText(hyperfocale+"m");
             }
 
         });

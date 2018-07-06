@@ -1,10 +1,11 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="sblourg.sblourgraphy.controller.HyperfocaleActivity">
+    tools:context="sblourg.sblourgraphy.controller.HyperfocaleActivity"
+    tools:layout_editor_absoluteY="81dp">
 
     <TextView
         android:id="@+id/textViewObjectif"
@@ -14,127 +15,234 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="Lens"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Spinner
         android:id="@+id/spinnerObjectif"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="8dp"
         android:background="@android:drawable/btn_dropdown"
         android:spinnerMode="dropdown"
-        android:layout_alignParentLeft="true" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewObjectif" />
 
     <TextView
         android:id="@+id/textViewAperture"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/textViewObjectif"
-        android:layout_marginTop="108dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="6dp"
         android:text="Aperture"
         android:textStyle="bold"
-        android:layout_alignLeft="@+id/textViewObjectif" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerObjectif" />
 
     <Spinner
         android:id="@+id/spinnerAperture"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="134dp"
+        android:layout_marginTop="8dp"
         android:background="@android:drawable/btn_dropdown"
         android:spinnerMode="dropdown"
-        android:layout_alignParentLeft="true" />
+        app:layout_constraintEnd_toStartOf="@+id/textViewFocaleSelected"
+        app:layout_constraintStart_toStartOf="@+id/textViewFocaleSelected"
+        app:layout_constraintTop_toBottomOf="@+id/textViewAperture" />
 
 
     <TextView
         android:id="@+id/textViewFocale"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-
-        android:layout_alignStart="@+id/textViewObjectif"
-        android:layout_marginTop="193dp"
+        android:layout_marginTop="6dp"
         android:text="Focale"
         android:textStyle="bold"
-        android:layout_alignLeft="@+id/textViewObjectif" />
-
-    <TextView
-        android:id="@+id/textViewFocaleSelected"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        android:layout_alignTop="@+id/textViewFocale"
-        android:layout_centerHorizontal="true"
-        android:textStyle="bold" />
+        app:layout_constraintEnd_toEndOf="@+id/textViewFocaleMin"
+        app:layout_constraintStart_toEndOf="@+id/textViewFocaleMin"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerAperture" />
 
 
     <TextView
         android:id="@+id/textViewFocaleMin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/textViewObjectif"
-        android:layout_below="@+id/seekBarFocale"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
         android:text="min"
-        android:layout_alignLeft="@+id/textViewObjectif" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/seekBarFocale" />
 
     <TextView
         android:id="@+id/textViewFocaleMax"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignTop="@+id/textViewFocaleMin"
-        android:layout_marginEnd="12dp"
+        android:layout_marginEnd="14dp"
+        android:layout_marginRight="14dp"
         android:text="max"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="12dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/seekBarFocale" />
 
     <SeekBar
         android:id="@+id/seekBarFocale"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toStartOf="@+id/textViewFocaleSelected"
+        app:layout_constraintStart_toStartOf="@+id/textViewFocaleSelected"
+        app:layout_constraintTop_toBottomOf="@+id/textViewFocale" />
 
-        android:layout_alignParentStart="true"
-        android:layout_centerVertical="true"
-        android:layout_alignParentLeft="true" />
+    <TextView
+        android:id="@+id/textViewFocaleSelected"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerAperture" />
 
+    <TextView
+        android:id="@+id/textViewMAP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="6dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:text="Distance"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/seekBarMAP"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewMAPMin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:text="MAPmin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/seekBarMAP" />
+
+    <TextView
+        android:id="@+id/textViewMAPmax"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="14dp"
+        android:layout_marginRight="14dp"
+        android:text="∞"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/seekBarMAP" />
+
+    <SeekBar
+        android:id="@+id/seekBarMAP"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="46dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewFocaleMax" />
+
+    <TextView
+        android:id="@+id/textViewMapSelected"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="6dp"
+        android:text="mapselected"
+        app:layout_constraintBottom_toTopOf="@+id/seekBarMAP"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/buttonSubmit"
         android:layout_width="221dp"
         android:layout_height="45dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="163dp"
+        android:layout_marginBottom="44dp"
+        android:layout_marginTop="43dp"
         android:background="@color/colorAccent"
-        android:text="Submit" />
+        android:text="Submit"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewPDC"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textViewMAPMin" />
+
 
     <TextView
-        android:id="@+id/textViewHyperfocale"
+        android:id="@+id/textViewMinPDC"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/textViewObjectif"
-        android:layout_marginBottom="120dp"
-        android:text="Hyperfocale"
-        android:textStyle="bold"
-        android:layout_alignLeft="@+id/textViewObjectif" />
+        android:layout_marginBottom="22dp"
+        android:layout_marginEnd="57dp"
+        android:layout_marginLeft="57dp"
+        android:layout_marginRight="57dp"
+        android:layout_marginStart="57dp"
+        android:text="minPDC"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/textViewPDC"
+        app:layout_constraintStart_toStartOf="@+id/textViewMAPMin" />
+
 
     <TextView
-        android:id="@+id/textViewHyperfocaleResult"
+        android:id="@+id/textViewPDC"
         android:layout_width="wrap_content"
-        android:layout_height="72dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="71dp"
+        android:text="PDC"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="16dp"
-        android:textColor="@color/colorAccent"
-        android:textSize="30dp"
-        android:textStyle="bold" />
+    <TextView
+        android:id="@+id/textViewMaxPDC"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="22dp"
+        android:text="maxPDC"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/viewPDC"
+        app:layout_constraintStart_toEndOf="@+id/viewPDC" />
 
-</RelativeLayout>
+    <View
+        android:id="@+id/viewPDC"
+        android:layout_width="224dp"
+        android:layout_height="8dp"
+        android:background="@color/colorPrimaryDark"
+        app:layout_constraintBottom_toTopOf="@+id/viewAfterPDC"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/viewAfterPDC" />
+
+    <View
+        android:id="@+id/viewBeforePDC"
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:layout_marginBottom="60dp"
+        android:layout_marginEnd="211dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="211dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="53dp"
+        android:background="@color/colorPrimaryDark"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/viewAfterPDC"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonSubmit" />
+
+    <View
+        android:id="@+id/viewAfterPDC"
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:layout_marginEnd="13dp"
+        android:layout_marginRight="13dp"
+        android:background="@color/colorPrimaryDark"
+        app:layout_constraintBottom_toBottomOf="@+id/viewBeforePDC"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/viewBeforePDC"
+        app:layout_constraintTop_toTopOf="@+id/viewBeforePDC" />
+
+
+</android.support.constraint.ConstraintLayout>
