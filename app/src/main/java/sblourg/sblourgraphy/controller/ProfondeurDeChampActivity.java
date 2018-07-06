@@ -250,37 +250,26 @@ public class ProfondeurDeChampActivity extends AppCompatActivity implements Adap
     @Override
     protected void onStart() {
         super.onStart();
-
-        out.println("HyperfocaleActivity::onStart()");
-
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-
-        out.println("HyperfocaleActivity::onResume()");
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-
-        out.println("HyperfocaleActivity::onPause()");
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-
-        out.println("HyperfocaleActivity::onStop()");
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-
-        out.println("HyperfocaleActivity::onDestroy()");
     }
 
     @Override

@@ -13,19 +13,9 @@
         android:layout_width="match_parent"
         android:layout_weight="1"
         android:layout_margin="5dp"
-        android:background="@android:color/holo_blue_bright"
+        android:background="@drawable/hyperfocale"
         android:layout_height="0dp"
         android:text="Hyperfocale"
-        android:textColor="@android:color/white"
-        android:textSize="24sp" />
-    <Button
-        android:id="@+id/activity_profondeur_de_champ_btn"
-        android:layout_width="match_parent"
-        android:layout_weight="1"
-        android:layout_margin="5dp"
-        android:background="@android:color/holo_orange_light"
-        android:layout_height="0dp"
-        android:text="Depth of field"
         android:textColor="@android:color/white"
         android:textSize="24sp" />
     <Button
@@ -33,11 +23,22 @@
         android:layout_width="match_parent"
         android:layout_weight="1"
         android:layout_margin="5dp"
-        android:background="@android:color/holo_red_dark"
+        android:background="@drawable/longexposure"
         android:layout_height="0dp"
         android:text="Long exposure"
         android:textColor="@android:color/white"
         android:textSize="24sp" />
+    <Button
+        android:id="@+id/activity_profondeur_de_champ_btn"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_margin="5dp"
+        android:background="@drawable/pdc"
+        android:layout_height="0dp"
+        android:text="Depth of field"
+        android:textColor="@android:color/white"
+        android:textSize="24sp" />
+
 
 
 

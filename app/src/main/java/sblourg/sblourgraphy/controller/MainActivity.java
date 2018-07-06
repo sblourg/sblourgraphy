@@ -73,36 +73,25 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
-        out.println("MainActivity::onStart()");
-
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-
-        out.println("MainActivity::onResume()");
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-
-        out.println("MainActivity::onPause()");
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-
-        out.println("MainActivity::onStop()");
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-
-        out.println("MainActivity::onDestroy()");
     }
 }
