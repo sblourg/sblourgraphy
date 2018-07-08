@@ -4,7 +4,7 @@
     android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="sblourg.sblourgraphy.controller.HyperfocaleActivity"
+    tools:context="sblourg.sblourgraphy.controller.ProfondeurDeChampActivity"
     tools:layout_editor_absoluteY="81dp">
 
     <TextView
@@ -24,7 +24,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:background="@android:drawable/btn_dropdown"
+        android:background="@android:drawable/btn_default"
         android:spinnerMode="dropdown"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -47,7 +47,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:background="@android:drawable/btn_dropdown"
+        android:background="@android:drawable/btn_default"
         android:spinnerMode="dropdown"
         app:layout_constraintEnd_toStartOf="@+id/textViewFocaleSelected"
         app:layout_constraintStart_toStartOf="@+id/textViewFocaleSelected"

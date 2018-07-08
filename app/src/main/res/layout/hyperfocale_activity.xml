@@ -24,7 +24,7 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginTop="45dp"
-        android:background="@android:drawable/btn_dropdown"
+        android:background="@android:drawable/btn_default"
         android:spinnerMode="dropdown"
         android:layout_alignParentLeft="true" />
 
@@ -47,7 +47,7 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginTop="134dp"
-        android:background="@android:drawable/btn_dropdown"
+        android:background="@android:drawable/btn_default"
         android:spinnerMode="dropdown"
         android:layout_alignParentLeft="true" />
 
