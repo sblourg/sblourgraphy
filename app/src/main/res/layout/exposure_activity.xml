@@ -7,49 +7,60 @@
     tools:context="sblourg.sblourgraphy.controller.PoseLongueActivity"
     tools:layout_editor_absoluteY="81dp">
 
+
     <RadioButton
         android:id="@+id/radio_Reset"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
+        android:layout_marginLeft="13dp"
+        android:layout_marginStart="13dp"
+        android:layout_marginTop="16dp"
         android:onClick="onRadioButtonClicked"
-        android:text="reset"
-        app:layout_constraintStart_toEndOf="@+id/spinnerIso"
+        android:text="Reset"
+        android:textSize="16dp"
+        app:layout_constraintStart_toStartOf="@+id/spinnerAperture"
         app:layout_constraintTop_toTopOf="parent" />
+
 
     <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/radioGroup"
         android:layout_width="0dp"
-        android:layout_height="32dp"
-        android:layout_marginBottom="51dp"
-        android:layout_marginTop="48dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="2dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginStart="15dp"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="@+id/spinnerIso"
+        app:layout_constraintBottom_toTopOf="@+id/spinnerIso"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/textViewIsoSelected"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radio_Reset">
 
 
         <RadioButton
             android:id="@+id/radio_iso"
-            android:layout_width="97dp"
+            android:layout_width="107dp"
             android:layout_height="wrap_content"
             android:onClick="onRadioButtonClicked"
-            android:text="Iso" />
+            android:text="Iso"
+            android:textSize="16dp" />
 
         <RadioButton
             android:id="@+id/radio_Aperture"
-            android:layout_width="121dp"
+            android:layout_width="111dp"
             android:layout_height="wrap_content"
             android:onClick="onRadioButtonClicked"
-            android:text="Aperture" />
+            android:text="Aperture"
+            android:textSize="16dp" />
 
         <RadioButton
             android:id="@+id/radio_Exposure"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="onRadioButtonClicked"
-            android:text="Exposure" />
+            android:text="Exposure"
+            android:textSize="16dp" />
     </RadioGroup>
 
     <RadioButton
@@ -59,6 +70,7 @@
         android:layout_marginTop="21dp"
         android:onClick="onRadioButtonClicked"
         android:text="Polarisant"
+        android:textSize="16dp"
         app:layout_constraintEnd_toEndOf="@+id/spinnerIso"
         app:layout_constraintStart_toEndOf="@+id/spinnerIso"
         app:layout_constraintTop_toBottomOf="@+id/spinnerIso" />
@@ -67,12 +79,13 @@
         android:id="@+id/radio_Verre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="29dp"
-        android:layout_marginRight="29dp"
+        android:layout_marginLeft="14dp"
+        android:layout_marginStart="14dp"
         android:onClick="onRadioButtonClicked"
         android:text="Verre de soudure"
+        android:textSize="16dp"
         app:layout_constraintBaseline_toBaselineOf="@+id/radio_Pola"
-        app:layout_constraintEnd_toEndOf="@+id/spinnerExposure" />
+        app:layout_constraintStart_toEndOf="@+id/radio_Pola" />
 
     <Spinner
         android:id="@+id/spinnerIso"
@@ -90,14 +103,12 @@
 
     <Spinner
         android:id="@+id/spinnerAperture"
-        android:layout_width="0dp"
+        android:layout_width="119dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="5dp"
-        android:layout_marginRight="5dp"
         android:background="@android:drawable/btn_default"
         android:spinnerMode="dropdown"
-        app:layout_constraintEnd_toStartOf="@+id/spinnerExposure"
-        app:layout_constraintStart_toEndOf="@+id/spinnerIso"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/spinnerIso" />
 
 
@@ -106,7 +117,9 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="14dp"
+        android:layout_marginLeft="5dp"
         android:layout_marginRight="14dp"
+        android:layout_marginStart="5dp"
         android:layout_marginTop="2dp"
         android:background="@android:drawable/btn_default"
         android:spinnerMode="dropdown"
@@ -118,10 +131,11 @@
         android:id="@+id/textViewIsoSelected"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="38dp"
+        android:layout_marginBottom="35dp"
         android:layout_marginLeft="30dp"
         android:layout_marginStart="30dp"
         android:text="Iso"
+        android:textSize="16dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/textViewIsoSelectedValue"
         app:layout_constraintStart_toStartOf="parent" />
@@ -130,24 +144,26 @@
         android:id="@+id/textViewApertureSelected"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="38dp"
+        android:layout_marginBottom="35dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginStart="5dp"
         android:text="Aperture"
+        android:textSize="16dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/textViewApertureSelectedValue"
-        app:layout_constraintEnd_toStartOf="@+id/textViewExposureSelected"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/textViewIsoSelected" />
+        app:layout_constraintBottom_toTopOf="@+id/textViewExposureSelectedValue"
+        app:layout_constraintStart_toEndOf="@+id/textViewIsoSelectedValue" />
 
     <TextView
         android:id="@+id/textViewExposureSelected"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="38dp"
+        android:layout_marginBottom="193dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:text="Exposure"
+        android:textSize="16dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/textViewExposureSelectedValue"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
@@ -166,21 +182,20 @@
         android:id="@+id/textViewApertureSelectedValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="124dp"
+        android:layout_marginTop="35dp"
         android:text="ApertureValue"
         android:textSize="28dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/textViewExposureSelectedValue"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/textViewIsoSelectedValue" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewExposureSelected" />
 
     <TextView
         android:id="@+id/textViewExposureSelectedValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="14dp"
-        android:layout_marginRight="14dp"
+        android:layout_marginEnd="7dp"
+        android:layout_marginRight="7dp"
         android:text="ExposureValue"
         android:textSize="28dp"
         android:textStyle="bold"

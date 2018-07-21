@@ -1,8 +1,11 @@
 package sblourg.sblourgraphy.controller;
 
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -11,6 +14,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.apache.commons.math3.fraction.BigFraction;
 
@@ -30,6 +34,7 @@ import sblourg.sblourgraphy.R;
 import sblourg.sblourgraphy.model.bean.ShotBank;
 import sblourg.sblourgraphy.model.bean.ShotBean;
 
+import static java.lang.System.out;
 
 
 public class PoseLongueActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
@@ -48,6 +53,8 @@ public class PoseLongueActivity extends AppCompatActivity implements AdapterView
     private ArrayAdapter<Double>  adapterAperture;
     private ArrayAdapter<Long> adapterIso;
     private Boolean mInvisible = true;
+    private Boolean mIso, mAperture, mExposure;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,6 +96,8 @@ public class PoseLongueActivity extends AppCompatActivity implements AdapterView
         mBooleanIso =  findViewById(R.id.radio_iso);
         mBooleanReset =  findViewById(R.id.radio_Reset);
         mRadioGroup =  findViewById(R.id.radioGroup);
+
+
         mBooleanReset.setChecked(true);
 
         mSpinnerIso =  findViewById(R.id.spinnerIso);
@@ -196,6 +205,8 @@ public class PoseLongueActivity extends AppCompatActivity implements AdapterView
             }
         });
         setFieldsInvisible();
+        setBooleansToFalse();
+
 
     }
 
@@ -209,17 +220,22 @@ public class PoseLongueActivity extends AppCompatActivity implements AdapterView
 
             case R.id.radio_Reset:
                 if (checked){
+                    mBooleanReset.setTextColor(Color.BLACK);
+                    mBooleanReset.setTextSize(16);
+                    mBooleanReset.setTypeface(Typeface.DEFAULT);
                     mSpinnerExposure.setAdapter(adapterExposure);
                     mSpinnerIso.setAdapter(adapterIso);
                     mSpinnerAperture.setAdapter(adapterAperture);
                     mRadioGroup.clearCheck();
                     mInvisible = true;
                     setFieldsInvisible();
+                    setBooleansToFalse();
                     break;
                 }
 
             case R.id.radio_iso:
                 if (checked) {
+                    letItToast();
                     mSpinnerIso.setAdapter(adapterEvaluate);
                     mShot.setLv(mShot.calculateLv());
                     mTextIsoSelectedValue.setText(String.valueOf(mShot.getIsoSelected()));
@@ -228,11 +244,13 @@ public class PoseLongueActivity extends AppCompatActivity implements AdapterView
                     mBooleanReset.setChecked(false);
                     mInvisible=false;
                     setFieldsInvisible();
+                    mIso = true;
                     break;
                 }
 
             case R.id.radio_Aperture:
                 if (checked){
+                    letItToast();
                     mShot.setLv(mShot.calculateLv());
                     mTextViewApertureSelectedValue.setText(String.valueOf(mShot.getApertureSelected()));
                     mSpinnerAperture.setAdapter(adapterEvaluate);
@@ -241,11 +259,13 @@ public class PoseLongueActivity extends AppCompatActivity implements AdapterView
                     mBooleanReset.setChecked(false);
                     mInvisible=false;
                     setFieldsInvisible();
+                    mAperture = true;
                     break;
                 }
 
             case R.id.radio_Exposure:
                 if (checked){
+                    letItToast();
                     mShot.setLv(mShot.calculateLv());
                     mSpinnerExposure.setAdapter(adapterEvaluate);
                     mTextViewExposureSelectedValue.setText(String.valueOf(mShot.getExposureSelected()));
@@ -254,6 +274,7 @@ public class PoseLongueActivity extends AppCompatActivity implements AdapterView
                     mBooleanReset.setChecked(false);
                     mInvisible=false;
                     setFieldsInvisible();
+                    mExposure = true;
                     break;
                 }
         }
@@ -275,6 +296,31 @@ public class PoseLongueActivity extends AppCompatActivity implements AdapterView
             mTextViewApertureSelected.setVisibility(View.VISIBLE);
             mTextViewExposureSelected.setVisibility(View.VISIBLE);
         }
+    }
+
+    private void setBooleansToFalse(){
+        mIso = false;
+        mAperture= false;
+        mExposure = false;
+    }
+
+    private void letItToast () {
+
+        if (mIso || mAperture || mExposure) {
+
+            Toast toast= Toast.makeText(getApplicationContext(),
+                    "Please, reset your settings before another evaluation", Toast.LENGTH_LONG);
+            toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 0);
+            toast.show();
+
+            mRadioGroup.clearCheck();
+            mBooleanReset.setTextColor(Color.RED);
+            mBooleanReset.setTextSize(24);
+            mBooleanReset.setTypeface(Typeface.DEFAULT_BOLD);
+
+
+        }
+
     }
 
     @Override
